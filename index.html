@@ -11,7 +11,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23E8501A'/%3E%3Cpath d='M7 20v-8a5 5 0 0 1 10 0v8l-1.8-1.3L13.6 20 12 18.7 10.4 20 8.8 18.7z' fill='%23FAF7F2'/%3E%3Ccircle cx='10' cy='11' r='1' fill='%23E8501A'/%3E%3Ccircle cx='14' cy='11' r='1' fill='%23E8501A'/%3E%3C/svg%3E">
 <!-- TYPE PAIRING: Georgia serif 700 headlines / system sans body / ui-monospace labels & prices.
      PALETTE (4 values only): paper #FAF7F2, ink #141412, muted #6B675F, accent vermillion #E8501A.
-     No gradients. No glass. No floating cards. No emoji icons. -->
+     3D = CSS perspective + solid plates + hard shadows only. No gradients. No glass. No floating cards.
+     No emoji icons (inline SVG only). No fake names, stats, or reviews — every claim is a product capability or a stated price. -->
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -19,11 +20,15 @@
     background:#FAF7F2;color:#141412;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:#E8501A;text-decoration:none}
   a:hover{text-decoration:underline}
+  ::selection{background:#E8501A;color:#fff}
+  :focus-visible{outline:3px solid #E8501A;outline-offset:2px}
+  section[id]{scroll-margin-top:84px}
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
   .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
   .eyebrow{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6B675F}
-  /* ---------- header ---------- */
-  header{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid #E5E0D5}
+  /* ---------- header: sticky, solid paper, no blur/glass ---------- */
+  header{position:sticky;top:0;z-index:50;background:#FAF7F2;border-bottom:1px solid #E5E0D5}
+  .head-row{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;max-width:1080px;margin:0 auto}
   .logo{display:flex;align-items:center;gap:8px}
   .logo svg{width:24px;height:24px;flex-shrink:0}
   .logo span{color:#E8501A}
@@ -36,12 +41,14 @@
   .hero .lede{font-size:18px;color:#3d3a35;max-width:480px}
   .hero .lede b{color:#141412}
   .hero .meta{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .btn{display:inline-block;background:#E8501A;color:#fff;padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;border:none;cursor:pointer;transition:transform .3s cubic-bezier(.22,1,.36,1)}
-  .btn:hover{background:#c93f10;text-decoration:none}
+  .btn{display:inline-block;background:#E8501A;color:#fff;padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;border:none;cursor:pointer;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s}
+  .btn:hover{background:#c93f10;text-decoration:none;transform:translateY(-2px);box-shadow:0 8px 18px rgba(20,20,18,.18)}
   .btn-note{font-size:13px;color:#6B675F}
   .hero .proof-line{margin-top:28px;border-top:1px solid #E5E0D5;padding-top:16px;font-size:14px;color:#6B675F}
   .hero .proof-line b{color:#141412}
-  /* ---------- chat demo (light theme) ---------- */
+  /* ---------- 3D hero visual: tilted window + hard shadow, no glass/gradient ---------- */
+  .hero-visual{position:relative;perspective:1100px;transform-style:preserve-3d}
+  .hero-visual .cd{position:relative;z-index:1;transform:rotateY(-9deg) rotateX(3deg);box-shadow:14px 16px 0 #141412;transition:transform .45s cubic-bezier(.22,1,.36,1)}
   .cd{border:1px solid #141412;border-radius:0;background:#fff;box-shadow:4px 4px 0 #141412;overflow:hidden;font-family:-apple-system,Segoe UI,Roboto,sans-serif}
   .cd-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid #E5E0D5;background:#FAF7F2}
   .cd-ava{width:38px;height:38px;border:1px solid #141412;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-weight:700;font-size:16px;background:#fff;flex-shrink:0}
@@ -77,6 +84,8 @@
   .problem b{color:#141412}
   /* services: numbered ruled list, no card grid */
   .svc{border-top:1px solid #141412}
+  .svc-row{transition:background .25s,transform .25s}
+  .svc-row:hover{background:#fff;transform:translateY(-2px)}
   .svc-row{display:grid;grid-template-columns:56px 1fr auto;gap:20px;align-items:start;padding:26px 0;border-bottom:1px solid #E5E0D5}
   .svc-row:last-child{border-bottom:1px solid #141412}
   .svc-num{font-family:Georgia,serif;font-weight:700;font-size:22px;color:#E8501A}
@@ -134,10 +143,12 @@
   }
   /* ---------- responsive ---------- */
   @media(max-width:860px){
-    header{flex-direction:column;align-items:flex-start;gap:8px}
+    .head-row{flex-direction:column;align-items:flex-start;gap:8px;padding:12px 24px}
+    header{position:static}
     .nav a{margin-left:0;margin-right:14px;font-size:13px;white-space:nowrap}
     .logo{font-size:19px}
     .hero{grid-template-columns:1fr;gap:32px;padding:44px 0 40px}
+    .hero-visual .cd{transform:none;box-shadow:4px 4px 0 #141412}
     .problem{grid-template-columns:1fr;gap:12px}
     .problem .time{font-size:48px}
     .steps{grid-template-columns:1fr}
@@ -156,12 +167,14 @@
 </style>
 </head>
 <body>
-<div class="wrap">
   <header>
+    <div class="wrap head-row">
     <div class="logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#141412" d="M5 21v-9a7 7 0 0 1 14 0v9l-2.4-1.7L14.2 21 12 19.3 9.8 21 7.4 19.3z"/><circle cx="9.4" cy="11" r="1.1" fill="#FAF7F2"/><circle cx="14.6" cy="11" r="1.1" fill="#FAF7F2"/></svg>Ghostname <span>Autopilot</span></div>
     <nav class="nav"><a href="#services">Services</a><a href="#how">How it works</a><a href="#faq">FAQ</a></nav>
+    </div>
   </header>
 
+<div class="wrap">
   <section class="hero">
     <div>
       <div class="eyebrow">Messenger automation · Clinics, salons &amp; restaurants</div>
@@ -173,7 +186,7 @@
       </div>
       <div class="proof-line"><b>Try it.</b> That chat box is the product — tap Book and watch it work.</div>
     </div>
-    <div>
+    <div class="hero-visual" id="heroVisual">
       <div class="cd" role="region" aria-label="Live chat demo">
         <div class="cd-head">
           <div class="cd-ava">S</div>
@@ -354,6 +367,26 @@
   bubble('Booked — tomorrow 10 AM. See you!','bot');
   sys('Booking saved to calendar · Reminder scheduled');
   /* ---- before/after slider REMOVED (audit: clipped text looked broken) ---- */
+  /* ---- 3D tilt on the hero chat window (hover devices only, subtle) ---- */
+  (function(){
+    if(!window.matchMedia('(hover:hover)').matches) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var visual=document.getElementById('heroVisual');
+    var cd=visual && visual.querySelector('.cd');
+    if(!visual||!cd) return;
+    var raf=null;
+    function setTilt(rx,ry){ cd.style.transform='rotateY('+(-9+ry).toFixed(2)+'deg) rotateX('+(3+rx).toFixed(2)+'deg)'; }
+    visual.addEventListener('mousemove',function(e){
+      var r=visual.getBoundingClientRect();
+      var nx=((e.clientX-r.left)/r.width-0.5)*2, ny=((e.clientY-r.top)/r.height-0.5)*2;
+      if(raf) cancelAnimationFrame(raf);
+      raf=requestAnimationFrame(function(){ setTilt(ny*3, nx*4); });
+    });
+    visual.addEventListener('mouseleave',function(){
+      if(raf) cancelAnimationFrame(raf);
+      raf=requestAnimationFrame(function(){ cd.style.transform=''; });
+    });
+  })();
   /* ---- magnetic primary CTA (hover devices only) ---- */
   if(window.matchMedia('(hover:hover)').matches){
     var btn=document.getElementById('ctaBtn');
