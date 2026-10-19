@@ -11,7 +11,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23E8501A'/%3E%3Cpath d='M7 20v-8a5 5 0 0 1 10 0v8l-1.8-1.3L13.6 20 12 18.7 10.4 20 8.8 18.7z' fill='%23FAF7F2'/%3E%3Ccircle cx='10' cy='11' r='1' fill='%23E8501A'/%3E%3Ccircle cx='14' cy='11' r='1' fill='%23E8501A'/%3E%3C/svg%3E">
 <!-- TYPE PAIRING: Georgia serif 700 headlines / system sans body / ui-monospace labels & prices.
      PALETTE (4 values only): paper #FAF7F2, ink #141412, muted #6B675F, accent vermillion #E8501A.
-     3D = CSS perspective + solid plates + hard shadows only. No gradients. No glass. No floating cards.
+     3D = layered-paper depth via an offset ::before plate + hard shadows only. No gradients. No glass. No floating cards.
+     No transforms on interactive elements (a tilt on the chat demo broke chip taps — fixed Oct 19).
      No emoji icons (inline SVG only). No fake names, stats, or reviews — every claim is a product capability or a stated price. -->
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -46,9 +47,13 @@
   .btn-note{font-size:13px;color:#6B675F}
   .hero .proof-line{margin-top:28px;border-top:1px solid #E5E0D5;padding-top:16px;font-size:14px;color:#6B675F}
   .hero .proof-line b{color:#141412}
-  /* ---------- 3D hero visual: tilted window + hard shadow, no glass/gradient ---------- */
-  .hero-visual{position:relative;perspective:1100px;transform-style:preserve-3d}
-  .hero-visual .cd{position:relative;z-index:1;transform:rotateY(-9deg) rotateX(3deg);box-shadow:14px 16px 0 #141412;transition:transform .45s cubic-bezier(.22,1,.36,1)}
+  /* ---------- hero visual: layered-paper depth, NO transform on the interactive demo ---------- */
+  /* Lesson Oct 19: a 3D transform (rotateY/rotateX) + JS tilt on .cd broke tap/click
+     hit-testing on the demo chips (Prices/Hours/etc.). Transforms now live ONLY on a
+     non-interactive ::before plate with pointer-events:none — the demo itself is flat. */
+  .hero-visual{position:relative}
+  .hero-visual::before{content:"";position:absolute;inset:14px -14px -14px 14px;background:#fff;border:1px solid #141412;pointer-events:none}
+  .hero-visual .cd{position:relative;z-index:1;box-shadow:14px 16px 0 #141412}
   .cd{border:1px solid #141412;border-radius:0;background:#fff;box-shadow:4px 4px 0 #141412;overflow:hidden;font-family:-apple-system,Segoe UI,Roboto,sans-serif}
   .cd-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid #E5E0D5;background:#FAF7F2}
   .cd-ava{width:38px;height:38px;border:1px solid #141412;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-weight:700;font-size:16px;background:#fff;flex-shrink:0}
@@ -148,7 +153,8 @@
     .nav a{margin-left:0;margin-right:14px;font-size:13px;white-space:nowrap}
     .logo{font-size:19px}
     .hero{grid-template-columns:1fr;gap:32px;padding:44px 0 40px}
-    .hero-visual .cd{transform:none;box-shadow:4px 4px 0 #141412}
+    .hero-visual .cd{box-shadow:4px 4px 0 #141412}
+    .hero-visual::before{inset:8px -8px -8px 8px}
     .problem{grid-template-columns:1fr;gap:12px}
     .problem .time{font-size:48px}
     .steps{grid-template-columns:1fr}
@@ -367,26 +373,6 @@
   bubble('Booked — tomorrow 10 AM. See you!','bot');
   sys('Booking saved to calendar · Reminder scheduled');
   /* ---- before/after slider REMOVED (audit: clipped text looked broken) ---- */
-  /* ---- 3D tilt on the hero chat window (hover devices only, subtle) ---- */
-  (function(){
-    if(!window.matchMedia('(hover:hover)').matches) return;
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var visual=document.getElementById('heroVisual');
-    var cd=visual && visual.querySelector('.cd');
-    if(!visual||!cd) return;
-    var raf=null;
-    function setTilt(rx,ry){ cd.style.transform='rotateY('+(-9+ry).toFixed(2)+'deg) rotateX('+(3+rx).toFixed(2)+'deg)'; }
-    visual.addEventListener('mousemove',function(e){
-      var r=visual.getBoundingClientRect();
-      var nx=((e.clientX-r.left)/r.width-0.5)*2, ny=((e.clientY-r.top)/r.height-0.5)*2;
-      if(raf) cancelAnimationFrame(raf);
-      raf=requestAnimationFrame(function(){ setTilt(ny*3, nx*4); });
-    });
-    visual.addEventListener('mouseleave',function(){
-      if(raf) cancelAnimationFrame(raf);
-      raf=requestAnimationFrame(function(){ cd.style.transform=''; });
-    });
-  })();
   /* ---- magnetic primary CTA (hover devices only) ---- */
   if(window.matchMedia('(hover:hover)').matches){
     var btn=document.getElementById('ctaBtn');
