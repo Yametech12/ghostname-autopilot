@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ghostname Autopilot — Your inbox, answered at 11 PM</title>
-<meta name="description" content="Messenger automation for clinics, salons and restaurants. Every customer message answered in seconds — even at 11 PM. Bookings saved to your calendar. Free audit.">
+<title>Ghostname Autopilot: Your inbox, answered at 11 PM</title>
+<meta name="description" content="Messenger automation for clinics, salons and restaurants. Every customer message answered in seconds, even at 11 PM. Bookings saved to your calendar. Free audit.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Ghostname Autopilot — Your inbox, answered at 11 PM">
+<meta property="og:title" content="Ghostname Autopilot: Your inbox, answered at 11 PM">
 <meta property="og:description" content="Messenger automation for clinics, salons and restaurants. Every message answered in seconds, bookings saved to your calendar. Book a free audit.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23E8501A'/%3E%3Cpath d='M7 20v-8a5 5 0 0 1 10 0v8l-1.8-1.3L13.6 20 12 18.7 10.4 20 8.8 18.7z' fill='%23FAF7F2'/%3E%3Ccircle cx='10' cy='11' r='1' fill='%23E8501A'/%3E%3Ccircle cx='14' cy='11' r='1' fill='%23E8501A'/%3E%3C/svg%3E">
 <!-- TYPE PAIRING: Georgia serif 700 headlines / system sans body / ui-monospace labels & prices.
      PALETTE (4 values only): paper #FAF7F2, ink #141412, muted #6B675F, accent vermillion #E8501A.
      3D = layered-paper depth via an offset ::before plate + hard shadows only. No gradients. No glass. No floating cards.
-     No transforms on interactive elements (a tilt on the chat demo broke chip taps — fixed Oct 19).
-     No emoji icons (inline SVG only). No fake names, stats, or reviews — every claim is a product capability or a stated price. -->
+     No transforms on interactive elements (a tilt on the chat demo broke chip taps, fixed Oct 19).
+     No emoji icons (inline SVG only). No fake names, stats, or reviews. Every claim is a product capability or a stated price. -->
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -50,7 +50,7 @@
   /* ---------- hero visual: layered-paper depth, NO transform on the interactive demo ---------- */
   /* Lesson Oct 19: a 3D transform (rotateY/rotateX) + JS tilt on .cd broke tap/click
      hit-testing on the demo chips (Prices/Hours/etc.). Transforms now live ONLY on a
-     non-interactive ::before plate with pointer-events:none — the demo itself is flat. */
+     non-interactive ::before plate with pointer-events:none. The demo itself is flat. */
   .hero-visual{position:relative}
   .hero-visual::before{content:"";position:absolute;inset:14px -14px -14px 14px;background:#fff;border:1px solid #141412;pointer-events:none}
   .hero-visual .cd{position:relative;z-index:1;box-shadow:14px 16px 0 #141412}
@@ -185,12 +185,12 @@
     <div>
       <div class="eyebrow">Messenger automation · Clinics, salons &amp; restaurants</div>
       <h1>Your clinic&rsquo;s inbox,<br>answered at <em>11 PM.</em></h1>
-      <p class="lede">A customer messages at night. Nobody is awake. <b>Our system replies in seconds, books the appointment, and saves it to your calendar</b> — before she finds your competitor.</p>
+      <p class="lede">A customer messages at night. Nobody is awake. <b>Our system replies in seconds, books the appointment, and saves it to your calendar</b>, before she finds your competitor.</p>
       <div class="meta">
         <a class="btn" id="ctaBtn" href="#contact">Book a Free Audit</a>
         <span class="btn-note">Free. We show you where customers are being lost.</span>
       </div>
-      <div class="proof-line"><b>Try it.</b> That chat box is the product — tap Book and watch it work.</div>
+      <div class="proof-line"><b>Try it.</b> That chat box is the product. Tap Book and watch it work.</div>
     </div>
     <div class="hero-visual" id="heroVisual">
       <div class="cd" role="region" aria-label="Live chat demo">
@@ -223,7 +223,7 @@
       <div>
         <p>A customer messages your Facebook Page: <b>“Pila ang cleaning? Gusto ko magpa-book.”</b></p>
         <p>Everyone is asleep. Nobody replies. By morning, she already booked with your competitor.</p>
-        <p><b>With Ghostname Autopilot, she gets a reply in seconds — and wakes up to a confirmed booking on your calendar.</b></p>
+        <p><b>With Ghostname Autopilot, she gets a reply in seconds, and wakes up to a confirmed booking on your calendar.</b></p>
       </div>
     </div>
   </section>
@@ -231,7 +231,7 @@
   <section class="section reveal" id="services">
     <div class="eyebrow">01 · Services</div>
     <h2>Four systems. One goal: no customer ignored.</h2>
-    <p class="sub">Each one runs on free tools. You pay for the build and the maintenance — nothing else.</p>
+    <p class="sub">Each one runs on free tools. You pay for the build and the maintenance. Nothing else..</p>
     <div class="svc" style="margin-top:28px">
       <div class="svc-row">
         <div class="svc-num">01</div>
@@ -285,7 +285,7 @@
         <div class="m in">Pila ang cleaning? Gusto ko magpa-book.</div>
         <div class="m out">Cleaning is ₱800. Want me to book you in?</div>
         <div class="m in">Yes, tomorrow 10 AM.</div>
-        <div class="m out">Booked — tomorrow 10 AM. See you!</div>
+        <div class="m out">Booked: tomorrow 10 AM. See you!</div>
       </div>
     </div>
   </section>
@@ -302,7 +302,7 @@
 
   <section class="section reveal">
     <div class="trust">
-      <div><b>Zero cost to start</b><span>You pay for the build and the maintenance — nothing else.</span></div>
+      <div><b>Zero cost to start</b><span>You pay for the build and the maintenance. Nothing else..</span></div>
       <div><b>AI assists, humans decide</b><span>Hard questions go to your staff. The bot never guesses.</span></div>
       <div><b>No new website or app</b><span>Everything works on your existing Facebook Page.</span></div>
     </div>
@@ -314,11 +314,11 @@
     <div class="faq" style="margin-top:24px">
       <details>
         <summary>Do I need technical skills?</summary>
-        <p>No. We handle the setup. You tell us your most-asked questions, your prices, and your hours. After that, you keep using your Page inbox the way you already do — and you can jump into any conversation at any time.</p>
+        <p>No. We handle the setup. You tell us your most-asked questions, your prices, and your hours. After that, you keep using your Page inbox the way you already do, and you can jump into any conversation at any time.</p>
       </details>
       <details>
         <summary>What if the bot can&rsquo;t answer?</summary>
-        <p>It hands the conversation to your staff. The bot never guesses. When a question is too complex or sensitive, it stops and lets a real person take over — so no customer ever gets a made-up reply.</p>
+        <p>It hands the conversation to your staff. The bot never guesses. When a question is too complex or sensitive, it stops and lets a real person take over, so no customer ever gets a made-up reply.</p>
       </details>
       <details>
         <summary>How fast can we go live?</summary>
@@ -334,7 +334,7 @@
   <section class="cta reveal" id="contact">
     <div class="eyebrow">Free audit · No commitment</div>
     <h2>How many customers did you lose last night?</h2>
-    <p>Message the Ghostname Autopilot Page on Facebook to book your free audit. We show you the lost messages — with your own Page.</p>
+    <p>Message the Ghostname Autopilot Page on Facebook to book your free audit. We show you the lost messages, with your own Page.</p>
     <a class="btn" id="ctaBtn2" href="#contact">Book a Free Audit</a>
   </section>
 
@@ -352,25 +352,25 @@
   function reply(orig){
     var q=orig.toLowerCase();
     if(step==='name'){pending.name=orig;step='date';return 'Nice to meet you! What date & time works for you? (e.g. "Tomorrow 10AM")';}
-    if(step==='date'){var n=pending.name;pending={};step=null;setTimeout(function(){sys('Booking saved to calendar · Reminder scheduled');},400);return "You're booked! "+dateStr(orig)+" — Teeth Cleaning at SmileCare Dental. We'll send a reminder 1 day before.";}
-    if(q.indexOf('price')!==-1||q.indexOf('cost')!==-1||q.indexOf('much')!==-1||q.indexOf('cleaning')!==-1)return 'Teeth Cleaning — ₱800\nWhitening — ₱3,500\nBraces Consultation — FREE\nWant to book? Tap Book below.';
-    if(q.indexOf('hour')!==-1||q.indexOf('open')!==-1||q.indexOf('close')!==-1)return "We're open Mon–Sat, 9AM–6PM. Closed Sundays. You can book anytime — even right now.";
-    if(q.indexOf('location')!==-1||q.indexOf('located')!==-1||q.indexOf('address')!==-1||q.indexOf('where')!==-1)return '2nd Floor, Ramos St., Cebu City — across from Robinsons, beside 7-Eleven.';
+    if(step==='date'){var n=pending.name;pending={};step=null;setTimeout(function(){sys('Booking saved to calendar · Reminder scheduled');},400);return "You're booked! "+dateStr(orig)+ ": Teeth Cleaning at SmileCare Dental. We'll send a reminder 1 day before.";}
+    if(q.indexOf('price')!==-1||q.indexOf('cost')!==-1||q.indexOf('much')!==-1||q.indexOf('cleaning')!==-1)return 'Teeth Cleaning: ₱800\nWhitening: ₱3,500\nBraces Consultation: FREE\nWant to book? Tap Book below.';
+    if(q.indexOf('hour')!==-1||q.indexOf('open')!==-1||q.indexOf('close')!==-1)return "We're open Mon–Sat, 9AM–6PM. Closed Sundays. You can book anytime, even right now.";
+    if(q.indexOf('location')!==-1||q.indexOf('located')!==-1||q.indexOf('address')!==-1||q.indexOf('where')!==-1)return '2nd Floor, Ramos St., Cebu City, across from Robinsons, beside 7-Eleven.';
     if(q.indexOf('book')!==-1||q.indexOf('appointment')!==-1||q.indexOf('schedule')!==-1){step='name';return "Great! Let's book you in. What's your full name?";}
-    if(q.indexOf('hi')===0||q.indexOf('hello')===0||q.indexOf('hey')===0)return 'Hi! Welcome to SmileCare Dental. Ask me about prices, hours, location — or tap Book to reserve a slot.';
-    if(q.indexOf('thank')!==-1)return "You're very welcome! Anything else — prices, hours, or booking?";
+    if(q.indexOf('hi')===0||q.indexOf('hello')===0||q.indexOf('hey')===0)return 'Hi! Welcome to SmileCare Dental. Ask me about prices, hours, location, or tap Book to reserve a slot.';
+    if(q.indexOf('thank')!==-1)return "You're very welcome! Anything else? Prices, hours, or booking?";
     return 'Thanks for your message! I can help with prices, hours, location, or booking. What would you like to know?';
   }
   function dateStr(q){return q.charAt(0).toUpperCase()+q.slice(1);}
   function send(t){if(!t.trim())return;bubble(t,'user');var r=reply(t);typing(function(){bubble(r,'bot');});}
   form.addEventListener('submit',function(e){e.preventDefault();var v=input.value;input.value='';input.focus();send(v);});
   document.getElementById('cd-chips').addEventListener('click',function(e){var b=e.target.closest('button');if(b)send(b.getAttribute('data-q'));});
-  bubble('Hi! Welcome to SmileCare Dental. Ask me about prices, hours, or tap Book to reserve a slot — I reply instantly, even at 11 PM.','bot');
+  bubble('Hi! Welcome to SmileCare Dental. Ask me about prices, hours, or tap Book to reserve a slot. I reply instantly, even at 11 PM.','bot');
   /* pre-loaded sample conversation so the demo looks alive immediately */
   bubble('Pila ang cleaning?','user');
   bubble('Cleaning is ₱800. Want me to book you in?','bot');
   bubble('Yes, tomorrow 10 AM.','user');
-  bubble('Booked — tomorrow 10 AM. See you!','bot');
+  bubble('Booked: tomorrow 10 AM. See you!','bot');
   sys('Booking saved to calendar · Reminder scheduled');
   /* ---- before/after slider REMOVED (audit: clipped text looked broken) ---- */
   /* ---- magnetic primary CTA (hover devices only) ---- */
