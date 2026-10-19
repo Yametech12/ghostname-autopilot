@@ -351,6 +351,14 @@
   function typing(cb){var el=document.createElement('div');el.className='cd-typing';el.textContent='•••';chat.appendChild(el);scroll();setTimeout(function(){el.remove();cb();},650);}
   function reply(orig){
     var q=orig.toLowerCase();
+    /* Mid-booking info request: tapping a chip (Prices/Hours/Location) while booking
+       waits for a name/date answers the question instead of treating it as the name.
+       Booking state is kept; the visitor types their name to continue. */
+    if((step==='name'||step==='date')&&(q.indexOf('location')!==-1||q.indexOf('located')!==-1||q.indexOf('address')!==-1||q.indexOf('where')!==-1||q.indexOf('hour')!==-1||q.indexOf('open')!==-1||q.indexOf('close')!==-1||q.indexOf('price')!==-1||q.indexOf('cost')!==-1||q.indexOf('much')!==-1||q.indexOf('cleaning')!==-1)){
+      if(q.indexOf('location')!==-1||q.indexOf('located')!==-1||q.indexOf('address')!==-1||q.indexOf('where')!==-1)return '2nd Floor, Ramos St., Cebu City, across from Robinsons, beside 7-Eleven. When you are ready, just type your name to continue booking.';
+      if(q.indexOf('hour')!==-1||q.indexOf('open')!==-1||q.indexOf('close')!==-1)return "We're open Mon-Sat, 9AM-6PM. Closed Sundays. You can book anytime, even right now. When you're ready, just type your name to continue booking.";
+      return 'Teeth Cleaning: ₱800\nWhitening: ₱3,500\nBraces Consultation: FREE\nWhen you are ready, just type your name to continue booking.';
+    }
     if(step==='name'){pending.name=orig;step='date';return 'Nice to meet you! What date & time works for you? (e.g. "Tomorrow 10AM")';}
     if(step==='date'){var n=pending.name;pending={};step=null;setTimeout(function(){sys('Booking saved to calendar · Reminder scheduled');},400);return "You're booked! "+dateStr(orig)+ ": Teeth Cleaning at SmileCare Dental. We'll send a reminder 1 day before.";}
     if(q.indexOf('price')!==-1||q.indexOf('cost')!==-1||q.indexOf('much')!==-1||q.indexOf('cleaning')!==-1)return 'Teeth Cleaning: ₱800\nWhitening: ₱3,500\nBraces Consultation: FREE\nWant to book? Tap Book below.';
